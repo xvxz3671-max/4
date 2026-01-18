@@ -1,0 +1,35 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Маратик - уникальная птица-тренер -->
+  <circle cx="32" cy="32" r="30" fill="#FF6B35" stroke="#E55A2B" stroke-width="2"/>
+  
+  <!-- Тело птицы -->
+  <ellipse cx="32" cy="38" rx="18" ry="22" fill="#FFE5D9"/>
+  
+  <!-- Голова -->
+  <circle cx="32" cy="20" r="12" fill="#FFE5D9"/>
+  
+  <!-- Клюв -->
+  <path d="M32 26 L28 30 L36 30 Z" fill="#FFA500"/>
+  
+  <!-- Глаза -->
+  <circle cx="28" cy="18" r="3" fill="#333"/>
+  <circle cx="36" cy="18" r="3" fill="#333"/>
+  <circle cx="29" cy="17" r="1" fill="#FFF"/>
+  <circle cx="37" cy="17" r="1" fill="#FFF"/>
+  
+  <!-- Крылья -->
+  <ellipse cx="20" cy="35" rx="8" ry="15" fill="#FF8C69" transform="rotate(-20 20 35)"/>
+  <ellipse cx="44" cy="35" rx="8" ry="15" fill="#FF8C69" transform="rotate(20 44 35)"/>
+  
+  <!-- Гантели в лапах -->
+  <rect x="15" y="48" width="8" height="3" rx="1" fill="#666"/>
+  <circle cx="15" cy="49.5" r="2" fill="#333"/>
+  <circle cx="23" cy="49.5" r="2" fill="#333"/>
+  
+  <rect x="41" y="48" width="8" height="3" rx="1" fill="#666"/>
+  <circle cx="41" cy="49.5" r="2" fill="#333"/>
+  <circle cx="49" cy="49.5" r="2" fill="#333"/>
+  
+  <!-- Хохолок -->
+  <path d="M32 8 L30 4 L34 4 Z" fill="#FF6B35"/>
+</svg>

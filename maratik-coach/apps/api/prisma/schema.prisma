@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  telegramId String  @unique
+  username  String?
+  firstName String?
+  lastName  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  workouts  Workout[]
+  weekPlans WeekPlan[]
+  stats     UserStats?
+  exercises Exercise[]
+
+  @@map("users")
+}
+
+model Exercise {
+  id          String @id @default(cuid())
+  name        String
+  muscleGroup String
+  isCustom    Boolean @default(false)
+  userId      String?
+  
+  user User? @relation(fields: [userId], references: [id])
+  sets WorkoutSet[]
+
+  @@map("exercises")
+}
+
+model Workout {
+  id          String   @id @default(cuid())
+  userId      String
+  date        String   // ISO date
+  muscleGroup String
+  duration    Int?     // minutes
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User         @relation(fields: [userId], references: [id])
+  sets WorkoutSet[]
+
+  @@map("workouts")
+}
+
+model WorkoutSet {
+  id         String @id @default(cuid())
+  workoutId  String
+  exerciseId String
+  weight     Float?
+  reps       Int
+  restTime   Int?   // seconds
+
+  workout  Workout  @relation(fields: [workoutId], references: [id])
+  exercise Exercise @relation(fields: [exerciseId], references: [id])
+
+  @@map("workout_sets")
+}
+
+model WeekPlan {
+  id        String @id @default(cuid())
+  userId    String
+  week      String // ISO week (YYYY-WW)
+  monday    String?
+  tuesday   String?
+  wednesday String?
+  thursday  String?
+  friday    String?
+  saturday  String?
+  sunday    String?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, week])
+  @@map("week_plans")
+}
+
+model UserStats {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  currentStreak Int      @default(0)
+  bestStreak    Int      @default(0)
+  totalWorkouts Int      @default(0)
+  badges        String   @default("[]") // JSON array
+  updatedAt     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("user_stats")
+}

@@ -1,0 +1,29 @@
+{
+  "name": "maratik-coach",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://xvxz3671-max.github.io/3/",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:web\" \"npm run dev:api\" \"npm run dev:bot\"",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:bot": "npm run dev --workspace=apps/bot",
+    "build": "npm run build --workspaces",
+    "build:web": "npm run build --workspace=apps/web",
+    "build:api": "npm run build --workspace=apps/api",
+    "build:bot": "npm run build --workspace=apps/bot",
+    "db:generate": "npm run db:generate --workspace=apps/api",
+    "db:push": "npm run db:push --workspace=apps/api",
+    "predeploy": "npm run build:web",
+    "deploy": "gh-pages -d apps/web/dist"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3",
+    "gh-pages": "^6.1.1"
+  }
+}
